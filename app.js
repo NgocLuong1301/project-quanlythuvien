@@ -9,6 +9,7 @@ const authorRoutes = require("./routes/authors");
 const categoryRoutes = require("./routes/categories");
 const publisherRoutes = require("./routes/publishers");
 const borrowRequestRoutes = require("./routes/borrowRequest");
+const borrowRoutes = require("./routes/borrow");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/api/authors", authorRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/publishers", publisherRoutes);
 app.use("/api/borrow-requests", borrowRequestRoutes);
+app.use("/api/borrows", borrowRoutes);
 
 app.listen(3000, () => {
   console.log("Server running...");
