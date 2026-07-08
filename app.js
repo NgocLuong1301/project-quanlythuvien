@@ -10,6 +10,8 @@ const categoryRoutes = require("./routes/categories");
 const publisherRoutes = require("./routes/publishers");
 const borrowRequestRoutes = require("./routes/borrowRequest");
 const borrowRoutes = require("./routes/borrow");
+const dashboardRoutes = require("./routes/dashboard");
+const uploadRoutes = require("./routes/upload");
 
 const app = express();
 
@@ -24,6 +26,8 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/publishers", publisherRoutes);
 app.use("/api/borrow-requests", borrowRequestRoutes);
 app.use("/api/borrows", borrowRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/upload", uploadRoutes);
 
 app.listen(3000, () => {
   console.log("Server running...");

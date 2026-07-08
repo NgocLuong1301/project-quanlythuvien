@@ -1,16 +1,25 @@
 const borrowModel = require("../models/borrowModel");
 const getAllBorrows = (req, res) => {
-  borrowModel.getAllBorrows((err, result) => {
+  borrowModel.updateOverdueBorrows((err) => {
     if (err) {
       return res.status(500).json({
         success: false,
-        message: "Lỗi server",
+        message: "Lỗi cập nhật quá hạn",
       });
     }
 
-    res.json({
-      success: true,
-      data: result,
+    borrowModel.getAllBorrows((err, result) => {
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: "Lỗi server",
+        });
+      }
+
+      res.json({
+        success: true,
+        data: result,
+      });
     });
   });
 };

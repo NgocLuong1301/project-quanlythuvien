@@ -99,6 +99,16 @@ const increaseBookQuantity = (book_id, quantity, callback) => {
 
   db.query(sql, [quantity, book_id], callback);
 };
+const updateOverdueBorrows = (callback) => {
+  const sql = `
+    UPDATE borrow
+    SET status = 'Quá hạn'
+    WHERE status = 'Đang mượn'
+      AND due_date < CURDATE()
+  `;
+
+  db.query(sql, callback);
+};
 module.exports = {
   createBorrow,
   createBorrowDetail,
@@ -108,4 +118,5 @@ module.exports = {
   getBorrowBooks,
   returnBorrow,
   increaseBookQuantity,
+  updateOverdueBorrows,
 };
