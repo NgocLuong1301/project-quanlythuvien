@@ -1,0 +1,67 @@
+.borrow{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.borrow-header{
+
+    margin-bottom:20px;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:15px;
+
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+.borrowing{
+
+    background:#f59e0b;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+}
+
+.returned{
+
+    background:#10b981;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+}

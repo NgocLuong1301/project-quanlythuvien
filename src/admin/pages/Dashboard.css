@@ -1,0 +1,133 @@
+.dashboard h1{
+
+    margin-bottom:25px;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    color:white;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.card h3{
+
+    font-size:18px;
+
+    margin-bottom:15px;
+
+}
+
+.card h1{
+
+    font-size:38px;
+
+}
+
+.blue{
+
+    background:#2563eb;
+
+}
+
+.green{
+
+    background:#10b981;
+
+}
+
+.orange{
+
+    background:#f59e0b;
+
+}
+
+.red{
+
+    background:#ef4444;
+
+}
+
+.table-box{
+
+    margin-top:35px;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.table-title{
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+    font-weight:bold;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:15px;
+
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+.available{
+
+    color:#16a34a;
+
+    font-weight:bold;
+
+}
+
+.borrow{
+
+    color:#dc2626;
+
+    font-weight:bold;
+
+}
