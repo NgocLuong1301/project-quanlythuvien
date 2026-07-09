@@ -1,0 +1,42 @@
+.book-detail{
+    display:flex;
+    gap:50px;
+    padding:40px 0;
+}
+
+.book-image{
+    width:280px;
+    height:380px;
+    background:#eee;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:120px;
+    border-radius:10px;
+}
+
+.book-info{
+    flex:1;
+}
+
+.book-info h1{
+    margin-bottom:20px;
+}
+
+.book-info p{
+    margin:12px 0;
+}
+
+.description{
+    margin:25px 0;
+    line-height:1.7;
+}
+
+.book-info button{
+    padding:12px 30px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}

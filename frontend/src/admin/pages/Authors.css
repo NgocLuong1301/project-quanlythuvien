@@ -1,0 +1,80 @@
+.authors{
+
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+
+}
+
+.author-form{
+
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+
+}
+
+.author-form input{
+
+    flex:1;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+
+}
+
+.author-form button{
+
+    padding:10px 20px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#2563eb;
+    color:white;
+    padding:12px;
+
+}
+
+td{
+
+    padding:12px;
+    border-bottom:1px solid #eee;
+
+}
+
+.edit-btn{
+
+    background:#f59e0b;
+    color:white;
+    border:none;
+    padding:7px 12px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-right:8px;
+
+}
+
+.delete-btn{
+
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:7px 12px;
+    border-radius:5px;
+    cursor:pointer;
+
+}
