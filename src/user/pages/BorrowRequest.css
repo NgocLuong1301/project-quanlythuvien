@@ -1,0 +1,25 @@
+.borrow-request{
+    padding:30px 0;
+}
+
+.borrow-request h2{
+    margin-bottom:25px;
+}
+
+.borrow-request table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+.borrow-request th,
+.borrow-request td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:left;
+}
+
+.borrow-request th{
+    background:#2563eb;
+    color:white;
+}

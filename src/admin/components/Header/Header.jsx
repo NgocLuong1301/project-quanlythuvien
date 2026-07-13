@@ -1,17 +1,20 @@
 import "./Header.css";
 
 function Header() {
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
   return (
     <header className="header">
 
       <div>
-
         <input
           className="search"
           type="text"
           placeholder="Search..."
         />
-
       </div>
 
       <div className="right">
@@ -24,12 +27,16 @@ function Header() {
         />
 
         <div>
-
           <h4>Admin</h4>
-
           <p>Administrator</p>
-
         </div>
+
+        <button
+          className="logout-btn"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
 
       </div>
 

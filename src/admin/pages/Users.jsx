@@ -1,26 +1,56 @@
+import { useState } from "react";
 import "./Users.css";
 
 function Users() {
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      name: "Nguyễn Văn A",
+      email: "vana@gmail.com",
+      role: "Student",
+      status: "Active",
+    },
+    {
+      id: 2,
+      name: "Trần Văn B",
+      email: "vanb@gmail.com",
+      role: "Admin",
+      status: "Active",
+    },
+    {
+      id: 3,
+      name: "Lê Văn C",
+      email: "vanc@gmail.com",
+      role: "Student",
+      status: "Blocked",
+    },
+  ]);
+
+  const toggleStatus = (id) => {
+    setUsers(
+      users.map((user) =>
+        user.id === id
+          ? {
+              ...user,
+              status:
+                user.status === "Active"
+                  ? "Blocked"
+                  : "Active",
+            }
+          : user
+      )
+    );
+  };
+
+  const deleteUser = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
   return (
     <div className="users">
 
-      <div className="users-header">
-
-        <h1>User Management</h1>
-
-        <button className="add-btn">
-          + Add User
-        </button>
-
-      </div>
-
-      <div className="search-box">
-
-        <input
-          type="text"
-          placeholder="Search user..."
-        />
-
+      <div className="page-header">
+        <h2>User Management</h2>
       </div>
 
       <table>
@@ -28,94 +58,55 @@ function Users() {
         <thead>
 
           <tr>
-
             <th>ID</th>
-            <th>Full Name</th>
+            <th>Name</th>
             <th>Email</th>
             <th>Role</th>
             <th>Status</th>
             <th>Action</th>
-
           </tr>
 
         </thead>
 
         <tbody>
 
-          <tr>
+          {users.map((user) => (
 
-            <td>1</td>
-            <td>Nguyễn Văn A</td>
-            <td>admin@gmail.com</td>
-            <td>Admin</td>
+            <tr key={user.id}>
 
-            <td>
-              <span className="active">Active</span>
-            </td>
+              <td>{user.id}</td>
 
-            <td>
+              <td>{user.name}</td>
 
-              <button className="edit">
-                Edit
-              </button>
+              <td>{user.email}</td>
 
-              <button className="delete">
-                Delete
-              </button>
+              <td>{user.role}</td>
 
-            </td>
+              <td>{user.status}</td>
 
-          </tr>
+              <td>
 
-          <tr>
+                <button
+                  className="status-btn"
+                  onClick={() => toggleStatus(user.id)}
+                >
+                  {user.status === "Active"
+                    ? "Block"
+                    : "Active"}
+                </button>
 
-            <td>2</td>
-            <td>Trần Văn B</td>
-            <td>user@gmail.com</td>
-            <td>User</td>
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteUser(user.id)}
+                >
+                  Delete
+                </button>
 
-            <td>
-              <span className="active">Active</span>
-            </td>
+              </td>
 
-            <td>
+            </tr>
 
-              <button className="edit">
-                Edit
-              </button>
-
-              <button className="delete">
-                Delete
-              </button>
-
-            </td>
-
-          </tr>
-
-          <tr>
-
-            <td>3</td>
-            <td>Lê Văn C</td>
-            <td>abc@gmail.com</td>
-            <td>User</td>
-
-            <td>
-              <span className="lock">Locked</span>
-            </td>
-
-            <td>
-
-              <button className="edit">
-                Edit
-              </button>
-
-              <button className="delete">
-                Delete
-              </button>
-
-            </td>
-
-          </tr>
+          ))}
 
         </tbody>
 

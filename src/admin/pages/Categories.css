@@ -1,61 +1,42 @@
 .categories{
 
-    background:white;
-
+    background:#fff;
     padding:25px;
-
-    border-radius:12px;
-
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    border-radius:10px;
 
 }
 
-.page-header{
+.category-form{
 
     display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
+    gap:10px;
     margin-bottom:20px;
 
 }
 
-.add-btn{
+.category-form input{
 
-    background:#2563eb;
+    flex:1;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
 
-    color:white;
+}
 
-    border:none;
+.category-form button{
 
     padding:10px 20px;
-
-    border-radius:8px;
-
+    border:none;
+    background:#2563eb;
+    color:white;
     cursor:pointer;
-
-}
-
-.search{
-
-    width:300px;
-
-    padding:12px;
-
-    margin-bottom:20px;
-
-    border-radius:8px;
-
-    border:1px solid #ccc;
+    border-radius:6px;
 
 }
 
 table{
 
     width:100%;
-
     border-collapse:collapse;
 
 }
@@ -63,47 +44,37 @@ table{
 th{
 
     background:#2563eb;
-
     color:white;
-
-    padding:15px;
+    padding:12px;
 
 }
 
 td{
 
-    padding:15px;
-
-    border-bottom:1px solid #ddd;
+    padding:12px;
+    border-bottom:1px solid #eee;
 
 }
 
-.edit{
+.edit-btn{
 
-    background:#10b981;
-
+    background:#f59e0b;
     color:white;
-
     border:none;
-
-    padding:8px 15px;
-
-    border-radius:6px;
-
-    margin-right:10px;
+    padding:7px 12px;
+    margin-right:8px;
+    border-radius:5px;
+    cursor:pointer;
 
 }
 
-.delete{
+.delete-btn{
 
     background:#ef4444;
-
     color:white;
-
     border:none;
-
-    padding:8px 15px;
-
-    border-radius:6px;
+    padding:7px 12px;
+    border-radius:5px;
+    cursor:pointer;
 
 }

@@ -1,25 +1,129 @@
+import { useState } from "react";
 import "./Books.css";
 
 function Books() {
+  const [books, setBooks] = useState([
+    {
+      id: 1,
+      title: "ReactJS",
+      author: "Facebook",
+      category: "Programming",
+      quantity: 10,
+    },
+    {
+      id: 2,
+      title: "NodeJS",
+      author: "Ryan Dahl",
+      category: "Programming",
+      quantity: 8,
+    },
+  ]);
+
+  const [form, setForm] = useState({
+    title: "",
+    author: "",
+    category: "",
+    quantity: "",
+  });
+
+  const [editingId, setEditingId] = useState(null);
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const saveBook = () => {
+    if (
+      !form.title ||
+      !form.author ||
+      !form.category ||
+      !form.quantity
+    )
+      return;
+
+    if (editingId) {
+      setBooks(
+        books.map((book) =>
+          book.id === editingId
+            ? {
+                ...book,
+                ...form,
+              }
+            : book
+        )
+      );
+
+      setEditingId(null);
+    } else {
+      setBooks([
+        ...books,
+        {
+          id: books.length + 1,
+          ...form,
+        },
+      ]);
+    }
+
+    setForm({
+      title: "",
+      author: "",
+      category: "",
+      quantity: "",
+    });
+  };
+
+  const editBook = (book) => {
+    setForm(book);
+    setEditingId(book.id);
+  };
+
+  const deleteBook = (id) => {
+    setBooks(books.filter((book) => book.id !== id));
+  };
+
   return (
     <div className="books">
 
-      <div className="books-header">
-
-        <h1>Book Management</h1>
-
-        <button className="add-btn">
-          + Add Book
-        </button>
-
+      <div className="page-header">
+        <h2>Book Management</h2>
       </div>
 
-      <div className="search-box">
+      <div className="book-form">
 
         <input
-          type="text"
-          placeholder="Search book..."
+          name="title"
+          placeholder="Book name"
+          value={form.title}
+          onChange={handleChange}
         />
+
+        <input
+          name="author"
+          placeholder="Author"
+          value={form.author}
+          onChange={handleChange}
+        />
+
+        <input
+          name="category"
+          placeholder="Category"
+          value={form.category}
+          onChange={handleChange}
+        />
+
+        <input
+          name="quantity"
+          placeholder="Quantity"
+          value={form.quantity}
+          onChange={handleChange}
+        />
+
+        <button onClick={saveBook}>
+          {editingId ? "Update" : "Add"}
+        </button>
 
       </div>
 
@@ -28,102 +132,53 @@ function Books() {
         <thead>
 
           <tr>
-
             <th>ID</th>
-
-            <th>Title</th>
-
+            <th>Name</th>
             <th>Author</th>
-
             <th>Category</th>
-
             <th>Quantity</th>
-
             <th>Action</th>
-
           </tr>
 
         </thead>
 
         <tbody>
 
-          <tr>
+          {books.map((book) => (
 
-            <td>1</td>
+            <tr key={book.id}>
 
-            <td>ReactJS</td>
+              <td>{book.id}</td>
 
-            <td>Facebook</td>
+              <td>{book.title}</td>
 
-            <td>Programming</td>
+              <td>{book.author}</td>
 
-            <td>25</td>
+              <td>{book.category}</td>
 
-            <td>
+              <td>{book.quantity}</td>
 
-              <button className="edit">
-                Edit
-              </button>
+              <td>
 
-              <button className="delete">
-                Delete
-              </button>
+                <button
+                  className="edit-btn"
+                  onClick={() => editBook(book)}
+                >
+                  Edit
+                </button>
 
-            </td>
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteBook(book.id)}
+                >
+                  Delete
+                </button>
 
-          </tr>
+              </td>
 
-          <tr>
+            </tr>
 
-            <td>2</td>
-
-            <td>NodeJS</td>
-
-            <td>Ryan Dahl</td>
-
-            <td>Programming</td>
-
-            <td>10</td>
-
-            <td>
-
-              <button className="edit">
-                Edit
-              </button>
-
-              <button className="delete">
-                Delete
-              </button>
-
-            </td>
-
-          </tr>
-
-          <tr>
-
-            <td>3</td>
-
-            <td>Java Core</td>
-
-            <td>Oracle</td>
-
-            <td>Programming</td>
-
-            <td>18</td>
-
-            <td>
-
-              <button className="edit">
-                Edit
-              </button>
-
-              <button className="delete">
-                Delete
-              </button>
-
-            </td>
-
-          </tr>
+          ))}
 
         </tbody>
 
