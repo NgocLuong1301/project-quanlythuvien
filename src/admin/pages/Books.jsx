@@ -9,6 +9,7 @@ function Books() {
       author: "Facebook",
       category: "Programming",
       quantity: 10,
+      image: "https://via.placeholder.com/70x90",
     },
     {
       id: 2,
@@ -16,6 +17,7 @@ function Books() {
       author: "Ryan Dahl",
       category: "Programming",
       quantity: 8,
+      image: "https://via.placeholder.com/70x90",
     },
   ]);
 
@@ -24,7 +26,10 @@ function Books() {
     author: "",
     category: "",
     quantity: "",
+    image: null,
   });
+
+  const [preview, setPreview] = useState(null);
 
   const [editingId, setEditingId] = useState(null);
 
@@ -35,14 +40,28 @@ function Books() {
     });
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    setPreview(URL.createObjectURL(file));
+
+    setForm({
+      ...form,
+      image: file,
+    });
+  };
+
   const saveBook = () => {
     if (
       !form.title ||
       !form.author ||
       !form.category ||
       !form.quantity
-    )
+    ) {
       return;
+    }
 
     if (editingId) {
       setBooks(
@@ -51,6 +70,7 @@ function Books() {
             ? {
                 ...book,
                 ...form,
+                image: preview || book.image,
               }
             : book
         )
@@ -62,7 +82,11 @@ function Books() {
         ...books,
         {
           id: books.length + 1,
-          ...form,
+          title: form.title,
+          author: form.author,
+          category: form.category,
+          quantity: form.quantity,
+          image: preview,
         },
       ]);
     }
@@ -72,11 +96,15 @@ function Books() {
       author: "",
       category: "",
       quantity: "",
+      image: null,
     });
+
+    setPreview(null);
   };
 
   const editBook = (book) => {
     setForm(book);
+    setPreview(book.image);
     setEditingId(book.id);
   };
 
@@ -86,13 +114,11 @@ function Books() {
 
   return (
     <div className="books">
-
       <div className="page-header">
         <h2>Book Management</h2>
       </div>
 
       <div className="book-form">
-
         <input
           name="title"
           placeholder="Book name"
@@ -121,34 +147,63 @@ function Books() {
           onChange={handleChange}
         />
 
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+        />
+
+        {preview && (
+          <img
+            src={preview}
+            alt="Preview"
+            width="120"
+            style={{
+              marginTop: "10px",
+              borderRadius: "8px",
+              display: "block",
+            }}
+          />
+        )}
+
         <button onClick={saveBook}>
           {editingId ? "Update" : "Add"}
         </button>
-
       </div>
 
       <table>
-
         <thead>
-
           <tr>
             <th>ID</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Author</th>
             <th>Category</th>
             <th>Quantity</th>
             <th>Action</th>
           </tr>
-
         </thead>
 
         <tbody>
-
           {books.map((book) => (
-
             <tr key={book.id}>
-
               <td>{book.id}</td>
+
+              <td>
+                {book.image ? (
+                  <img
+                    src={book.image}
+                    alt={book.title}
+                    width="70"
+                    height="90"
+                    style={{
+                      objectFit: "cover",
+                    }}
+                  />
+                ) : (
+                  "No Image"
+                )}
+              </td>
 
               <td>{book.title}</td>
 
@@ -159,7 +214,6 @@ function Books() {
               <td>{book.quantity}</td>
 
               <td>
-
                 <button
                   className="edit-btn"
                   onClick={() => editBook(book)}
@@ -173,19 +227,12 @@ function Books() {
                 >
                   Delete
                 </button>
-
               </td>
-
             </tr>
-
           ))}
-
         </tbody>
-
       </table>
-
     </div>
   );
 }
-
 export default Books;
