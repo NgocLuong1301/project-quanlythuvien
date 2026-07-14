@@ -1,86 +1,115 @@
+import { useState } from "react";
 import "./Authors.css";
 
 function Authors() {
+  const [authors, setAuthors] = useState([
+    { id: 1, name: "Nguyễn Nhật Ánh" },
+    { id: 2, name: "Nam Cao" },
+    { id: 3, name: "Tô Hoài" },
+  ]);
+
+  const [name, setName] = useState("");
+  const [editingId, setEditingId] = useState(null);
+
+  const saveAuthor = () => {
+    if (!name.trim()) return;
+
+    if (editingId) {
+      setAuthors(
+        authors.map((item) =>
+          item.id === editingId
+            ? { ...item, name }
+            : item
+        )
+      );
+      setEditingId(null);
+    } else {
+      setAuthors([
+        ...authors,
+        {
+          id: authors.length + 1,
+          name,
+        },
+      ]);
+    }
+
+    setName("");
+  };
+
+  const editAuthor = (author) => {
+    setName(author.name);
+    setEditingId(author.id);
+  };
+
+  const deleteAuthor = (id) => {
+    setAuthors(authors.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="authors">
 
       <div className="page-header">
+        <h2>Author Management</h2>
+      </div>
 
-        <h1>Author Management</h1>
+      <div className="author-form">
 
-        <button className="add-btn">
-          + Add Author
+        <input
+          type="text"
+          placeholder="Author name..."
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <button onClick={saveAuthor}>
+          {editingId ? "Update" : "Add"}
         </button>
 
       </div>
-
-      <input
-        className="search"
-        type="text"
-        placeholder="Search author..."
-      />
 
       <table>
 
         <thead>
 
           <tr>
-
             <th>ID</th>
-
-            <th>Author Name</th>
-
-            <th>Nationality</th>
-
-            <th>Books</th>
-
+            <th>Author</th>
             <th>Action</th>
-
           </tr>
 
         </thead>
 
         <tbody>
 
-          <tr>
+          {authors.map((author) => (
 
-            <td>1</td>
+            <tr key={author.id}>
 
-            <td>Robert C. Martin</td>
+              <td>{author.id}</td>
 
-            <td>USA</td>
+              <td>{author.name}</td>
 
-            <td>35</td>
+              <td>
 
-            <td>
+                <button
+                  className="edit-btn"
+                  onClick={() => editAuthor(author)}
+                >
+                  Edit
+                </button>
 
-              <button className="edit">Edit</button>
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteAuthor(author.id)}
+                >
+                  Delete
+                </button>
 
-              <button className="delete">Delete</button>
+              </td>
 
-            </td>
+            </tr>
 
-          </tr>
-
-          <tr>
-
-            <td>2</td>
-
-            <td>Martin Fowler</td>
-
-            <td>UK</td>
-
-            <td>18</td>
-
-            <td>
-
-              <button className="edit">Edit</button>
-
-              <button className="delete">Delete</button>
-
-            </td>
-
-          </tr>
+          ))}
 
         </tbody>
 
